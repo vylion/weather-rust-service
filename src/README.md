@@ -1,6 +1,6 @@
 # Notes
 
-As for REST API enabling libraries, the one with the most readily available information was Rocket, and that was the main reason Rocket was chosen for this app. However, it requires the `nightly` verison of Rust and, currently, it has no capabilities for asynchronous functions to work as REST handlers, which is why the `CLient` created in `download.rs` is `blocking` instead of asynchronous.
+As for REST API enabling libraries, the one with the most readily available information was Rocket, and that was the main reason Rocket was chosen for this app. However, it requires the `nightly` verison of Rust and, currently, it has no capabilities for asynchronous functions to work as REST handlers, which is why the `Client` created in `download.rs` is `blocking` instead of asynchronous.
 
 Ideas for improvement:
 
