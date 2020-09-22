@@ -5,10 +5,10 @@ As for REST API enabling libraries, the one with the most readily available info
 Ideas for improvement:
 
 * Adding actual testing.
-* Check that parameters are compatible (city name with the country code, for example).
 * Adding some permanence, so requests closer in time than 10 minutes use a local cache'd copy.
   * Either keeping the parameters of the last cache'd call too, to manually convert temperature units if the user asks for a different one, or change queries to always get them in Kelvin and always do the manual calculations when presenting the info to the user.
 * Adding the alternative API calls available at OpenWeather.
+* Check that parameters are correct & compatible (city name with the country code, for example), using the resources from OpenWeather.
 * Reusing the Http Client across API calls.
 
 # Consulted Documentation
