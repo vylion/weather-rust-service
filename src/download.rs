@@ -106,3 +106,64 @@ pub fn call_api(client: Option<reqwest::blocking::Client>,
         },
     }
 }
+
+#[cfg(test)]
+mod tests {
+    #[test]
+    fn creates_client() {
+        assert!(super::create_client().is_some());
+    }
+
+    #[test]
+    fn concats_urls() {
+        let key = String::from("960c6bd08da0acfb2debc737573930c6");
+
+        // Testing for weather query url with City name and temp in Celsius
+        assert!(
+            super::concat_url(
+                key.clone(),
+                super::utils::Query::Weather,
+                String::from("City"),
+                None,
+                None,
+                super::utils::Temp::C
+            ) == format!("http://api.openweathermap.org/data/2.5/weather?q=City&appid={}&units=metric", key.clone())
+        );
+
+        // Testing for forecast query url with City name, State code and temp in Fahrenheit
+        assert!(
+            super::concat_url(
+                key.clone(),
+                super::utils::Query::Forecast,
+                String::from("City"),
+                Some(String::from("State")),
+                None,
+                super::utils::Temp::F
+            ) == format!("http://api.openweathermap.org/data/2.5/forecast?q=City,State&appid={}&units=imperial", key.clone())
+        );
+
+        // Testing for worecast query url with City name, Country code and temp in Fahrenheit
+        assert!(
+            super::concat_url(
+                key.clone(),
+                super::utils::Query::Weather,
+                String::from("City"),
+                None,
+                Some(String::from("Country")),
+                super::utils::Temp::F
+            ) == format!("http://api.openweathermap.org/data/2.5/weather?q=City,Country&appid={}&units=imperial", key.clone())
+        );
+
+        // Testing for worecast query url with City name, State code, Country code and temp in Celsius
+        assert!(
+            super::concat_url(
+                key.clone(),
+                super::utils::Query::Forecast,
+                String::from("City"),
+                Some(String::from("State")),
+                Some(String::from("Country")),
+                super::utils::Temp::C
+            ) == format!("http://api.openweathermap.org/data/2.5/weather?q=City,State,Country&appid={}&units=metric", key.clone())
+        );
+    }
+}
