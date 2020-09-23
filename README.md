@@ -1,6 +1,6 @@
 # Additions
 
-* Added a few basic tests (`download.rs`).
+* Added a few basic tests (`download.rs`, `main.rs`).
 * Fixed a typo in `main::weather(...)` and `main::forecast(...)` that parsed the Fahrenheit parameter as Celsius as well.
 
 # Notes
